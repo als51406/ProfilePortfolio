@@ -164,6 +164,7 @@ const ThreeDViewer: React.FC = () => {
     createPortal(
       <>
         <button
+          aria-label="이전 슬라이드로 이동"
           style={{
             fontSize: '16px',
             position: 'fixed',
@@ -230,6 +231,7 @@ const ThreeDViewer: React.FC = () => {
           </svg>
         </button>
         <button
+          aria-label="다음 슬라이드로 이동"
           style={{
             fontSize: '16px',
             position: 'fixed',

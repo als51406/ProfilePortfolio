@@ -1,0 +1,85 @@
+/* 접근성 개선 - 키보드 포커스 스타일 */
+
+/* 모든 인터랙티브 요소에 대한 포커스 가시성 */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid #C8FF7A;
+  outline-offset: 4px;
+  transition: outline-offset 0.2s ease;
+}
+
+/* 포커스 시 outline offset 애니메이션 */
+button:focus-visible {
+  outline-offset: 6px;
+}
+
+/* 링크 포커스 스타일 */
+a:focus-visible {
+  outline-color: #C8FF7A;
+  outline-style: solid;
+  outline-width: 2px;
+  border-radius: 2px;
+}
+
+/* 스크린 리더 전용 텍스트 (시각적으로 숨기되 스크린 리더는 읽을 수 있음) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* 스킵 네비게이션 링크 */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #C8FF7A;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100000;
+  font-weight: 600;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-content:focus {
+  top: 0;
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+  button:focus-visible,
+  a:focus-visible {
+    outline-width: 3px;
+    outline-offset: 3px;
+  }
+}
+
+/* 감속 모드 지원 (애니메이션 줄이기) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  /* 단, 포커스 전환은 유지 */
+  button:focus-visible,
+  a:focus-visible {
+    transition-duration: 0.1s !important;
+  }
+}

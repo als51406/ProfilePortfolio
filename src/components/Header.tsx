@@ -83,7 +83,13 @@ const Header: React.FC = () => {
                                     style={{ color: location.pathname === '/projects' ? '#e8e8e8ff' : undefined, cursor: 'pointer' }}
                                     role="link"
                                     tabIndex={0}
-                                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigate('/'); }}
+                                    aria-label="홈으로 이동"
+                                    onKeyDown={(e) => { 
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            navigate('/');
+                                        }
+                                    }}
                                 >
                                     Design Profile
                                 </h1>
