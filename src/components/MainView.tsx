@@ -159,6 +159,18 @@ function Model({ carouselRef }: ModelProps) {
 
 const ThreeDViewer: React.FC = () => {
   const carouselRef = useRef<MeshCarousel3DHandle>(null);
+  const lastClickTime = useRef<number>(0);
+  const CLICK_THROTTLE_MS = 500; // 0.5초
+
+  // 쓰로틀된 클릭 핸들러
+  const handleThrottledClick = (action: () => void) => {
+    const now = Date.now();
+    if (now - lastClickTime.current < CLICK_THROTTLE_MS) {
+      return; // 0.5초 이내 클릭 무시
+    }
+    lastClickTime.current = now;
+    action();
+  };
 
   const ButtonsPortal: React.FC = () =>
     createPortal(
@@ -220,10 +232,12 @@ const ThreeDViewer: React.FC = () => {
             el.style.boxShadow = '0 4px 18px -4px rgba(0,0,0,0.4), inset 0 0 0 0.5px rgba(255,255,255,0.3)';
           }}
           onClick={() => {
-            const api = carouselRef.current;
-            if (!api) return;
-            if (typeof api.prev === 'function') api.prev();
-            else if (typeof api.getIndex === 'function' && typeof api.goTo === 'function') api.goTo(api.getIndex() - 1);
+            handleThrottledClick(() => {
+              const api = carouselRef.current;
+              if (!api) return;
+              if (typeof api.prev === 'function') api.prev();
+              else if (typeof api.getIndex === 'function' && typeof api.goTo === 'function') api.goTo(api.getIndex() - 1);
+            });
           }}
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{display:'block'}}>
@@ -287,10 +301,12 @@ const ThreeDViewer: React.FC = () => {
             el.style.boxShadow = '0 4px 18px -4px rgba(0,0,0,0.4), inset 0 0 0 0.5px rgba(255,255,255,0.3)';
           }}
           onClick={() => {
-            const api = carouselRef.current;
-            if (!api) return;
-            if (typeof api.next === 'function') api.next();
-            else if (typeof api.getIndex === 'function' && typeof api.goTo === 'function') api.goTo(api.getIndex() + 1);
+            handleThrottledClick(() => {
+              const api = carouselRef.current;
+              if (!api) return;
+              if (typeof api.next === 'function') api.next();
+              else if (typeof api.getIndex === 'function' && typeof api.goTo === 'function') api.goTo(api.getIndex() + 1);
+            });
           }}
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{display:'block'}}>
