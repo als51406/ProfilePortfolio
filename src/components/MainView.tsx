@@ -35,7 +35,7 @@ function CameraController() {
         y,
         duration: 5,
         ease: 'power2.out',
-        onComplete: () => camera.lookAt(0, 1, 0)
+        onUpdate: () => camera.lookAt(0, 1, 0)
       });
     };
     window.addEventListener('mousemove', handleMouseMove);
