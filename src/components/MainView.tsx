@@ -1,28 +1,14 @@
-import React, { Suspense, useRef } from 'react';
+import React, { Suspense, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Canvas, useLoader, useFrame } from '@react-three/fiber';
-import { Html, OrbitControls, useGLTF } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { Html, useGLTF } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
-import { useEffect } from 'react';
-import * as THREE from 'three';
 import gsap from 'gsap';
 import MyElement3D from '../assets/MyElement3D';
-import TiltedCard from '../assets/TiltedCard';
 import MeshCarousel3D, { MeshCarousel3DHandle } from './MeshCarousel3D';
 import Detailview from '../assets/Detailview';
 import TextrueMesh from '../assets/TextrueMesh';
 import promo from '../assets/images/프로모션.png';
-
-//텍스쳐 import
-// import gsapTexture from '../assets/gsap.avif';
-// import tsTexture from '../assets/ts.png';
-// import threejsTexture from '../assets/threejs.png'
-// import reactTexture from '../assets/react.png'
-// import framerTexture from '../assets/framer.png'
-// import vscodeTexture from '../assets/vscode.png'
-// import html5Texture from '../assets/html5.png'
-import SkillsSphere from './SkillsSphere';
-import { addScaleCorrector } from 'framer-motion';
 
 
 

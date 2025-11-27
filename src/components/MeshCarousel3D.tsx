@@ -3,8 +3,6 @@ import * as THREE from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useDrag } from '@use-gesture/react';
 import { RenderTexture, PerspectiveCamera } from '@react-three/drei';
-import MyElement3D from '../assets/MyElement3D';
-import gsap from 'gsap';
 import Detailview from '../assets/Detailview';
 
 type RenderPanel = (index: number) => React.ReactNode;
