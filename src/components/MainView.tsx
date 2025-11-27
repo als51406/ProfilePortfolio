@@ -143,7 +143,7 @@ function Model({ carouselRef }: ModelProps) {
           // i === 2: MyElement3D 예시
           return (
             <>
-              <color attach="background" args={["#121212ff"]} />
+              <color attach="background" args={["#121212"]} />
               <group scale={[0.5, 0.5, 0.5]}>
                 <MyElement3D />
               </group>
@@ -160,7 +160,7 @@ function Model({ carouselRef }: ModelProps) {
 const ThreeDViewer: React.FC = () => {
   const carouselRef = useRef<MeshCarousel3DHandle>(null);
   const lastClickTime = useRef<number>(0);
-  const CLICK_THROTTLE_MS = 500; // 0.5초
+  const CLICK_THROTTLE_MS = 400; // 0.4초
 
   // 쓰로틀된 클릭 핸들러
   const handleThrottledClick = (action: () => void) => {

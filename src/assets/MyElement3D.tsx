@@ -39,7 +39,7 @@ function MyElement3D() {
       />
       <pointLight
         ref={light}
-        color="#f337e3ff"
+        color="#f337e3"
         intensity={8}
         position={[0, 4, 0]}
         distance={10} // 빛의 최대 거리(퍼짐 범위)
