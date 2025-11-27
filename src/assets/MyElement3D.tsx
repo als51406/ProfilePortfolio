@@ -64,7 +64,7 @@ function MyElement3D() {
       <mesh rotation-x={THREE.MathUtils.degToRad(-90)} position={[0, 0, 0]}>
         <planeGeometry args={[50, 50]} />
         <meshStandardMaterial
-          color={"#121212ff"}
+          color={"#121212"}
           roughness={0}
           metalness={0}
           side={THREE.DoubleSide}

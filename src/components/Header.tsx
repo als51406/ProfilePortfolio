@@ -31,7 +31,7 @@ const modalContentStyle: React.CSSProperties = {
     width:"1290px",
     height:"660px",
     overflow: 'hidden',
-    color: '#1d1d1dff',
+    color: '#1d1d1d',
     boxShadow: '0 8px 40px 0 rgba(31,38,135,0.18), 0 1.5px 8px rgba(255,255,255,0.10) inset',
     position: 'relative',
     border: '1.5px solid rgba(255,255,255,0.22)',
@@ -80,7 +80,7 @@ const Header: React.FC = () => {
                         <header>
                                 <h1
                                     onClick={() => navigate('/')}
-                                    style={{ color: location.pathname === '/projects' ? '#e8e8e8ff' : undefined, cursor: 'pointer' }}
+                                    style={{ color: location.pathname === '/projects' ? '#e8e8e8' : undefined, cursor: 'pointer' }}
                                     role="link"
                                     tabIndex={0}
                                     aria-label="홈으로 이동"
