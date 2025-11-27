@@ -1,0 +1,105 @@
+.glass-bubble {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 5;
+  transform: translate(-50%, -50%);
+
+  /* 드라마틱한 글래스 효과 */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 60px rgba(31, 38, 135, 0.2),
+    0 8px 32px rgba(255, 255, 255, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 40px rgba(100, 200, 255, 0.15);
+
+  /* 강한 3D 효과와 그라데이션 */
+  background-image: radial-gradient(
+      circle at 25% 25%,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(100, 200, 255, 0.05) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      transparent 50%,
+      rgba(100, 200, 255, 0.02) 100%
+    );
+
+  /* 드라마틱한 애니메이션 */
+  animation: dramaticFloat 3s ease-in-out infinite,
+    pulse 2s ease-in-out infinite alternate,
+    shimmerDramatic 4s ease-in-out infinite;
+}
+
+/* 드라마틱한 떠다니는 효과 */
+@keyframes dramaticFloat {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translateY(0px) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(-50%, -50%) translateY(-2px) scale(1.1) rotate(120deg);
+  }
+  66% {
+    transform: translate(-50%, -50%) translateY(-6px) scale(0.95) rotate(240deg);
+  }
+}
+
+/* 맥동 효과 */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 15px 60px rgba(31, 38, 135, 0.2),
+      0 8px 32px rgba(255, 255, 255, 0.1),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 0 40px rgba(100, 200, 255, 0.15);
+  }
+  100% {
+    box-shadow: 0 20px 80px rgba(31, 38, 135, 0.3),
+      0 12px 48px rgba(255, 255, 255, 0.15),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 0 60px rgba(100, 200, 255, 0.25);
+  }
+}
+
+/* 드라마틱한 반짝임 */
+@keyframes shimmerDramatic {
+    /* 0 90 180 270 360 */
+  0% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  25% {
+    filter: hue-rotate(0deg) brightness(1.2);
+  }
+  50% {
+    filter: hue-rotate(0deg) brightness(1.1);
+  }
+  75% {
+    filter: hue-rotate(0deg) brightness(1.3);
+  }
+  100% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+}
+
+/* 반응형 크기 조정 */
+@media (max-width: 768px) {
+  .glass-bubble {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* 마우스 근처에서 더 드라마틱한 효과 */
+.glass-bubble:hover {
+  animation-duration: 1.5s, 1s, 2s;
+  transform: translate(-50%, -50%) scale(1.3);
+}

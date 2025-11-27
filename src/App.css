@@ -1,38 +1,122 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {margin: 0; padding: 0; font-family: "Noto Sans", sans-serif;}
+
+html { scroll-behavior: smooth; }
+
+
+/****************Header****************/
+#headerWrap {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	pointer-events: auto;
+	background: transparent;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header {z-index: 1000; position: relative; width: calc(100% - 40px); padding: 15px 20px; display: flex; flex-direction: row; justify-content: space-between; align-items: center;}
+header h1 {font-size: 18px; color: #101010; cursor: pointer;}
+header nav {width: 370px; display: flex; flex-direction: row; justify-content: space-between; align-items: center;}
+/* header nav ul { list-style: none; width: 300px; display: flex; flex-direction: row; align-items: center; justify-content: space-between;}
+header nav ul li { cursor: pointer; font-size: 14px; line-height: 14px; font-weight: bold; width: 90px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 1000px; color: white; background-color: black; }
+header nav ul li:nth-child(1) {background-color: #F0F0DD; color: black;} */
+header nav .menu-bar {cursor: pointer; width: 30px; height: 30px; border-radius: 1000px; display: flex; justify-content: center; align-items: center; background-color: black;}
+header nav .menu-bar svg {width: 15px; fill: white;}
+
+
+/*언어 (상단 반만 노출) */
+.wave { position:fixed; top:0%; left:50%; transform:translateX(-50%); z-index:40; width:240px; height:100px;display:flex; align-items:flex-start; justify-content:center; }
+/* 가시 영역 클리핑 (컨테이너의 아래쪽 절반만 보여줌) */
+.wave .wave-clip { position:absolute; top:0; left:50%; transform:translate(-50%,0); width:240px; height:240px; overflow:hidden; pointer-events:none; }
+/* 실제 파동 원 (전체 원 유지) */
+.wave .wave-container { position:absolute; left:50%; top:0; width:200px; height:200px; transform:translate(-50%,-100px);  filter:blur(.3px); }
+.wave .wave-container span {background-color: rgba(255, 255, 255, 0.15); position:absolute; left:50%; top:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(.22); border:2px solid rgba(255,255,255,0.30); border-radius:50%; animation:langWave 4.2s cubic-bezier(.22,.61,.36,1) infinite; box-shadow:0 0 8px rgba(255,255,255,0.28), inset 0 0 5px rgba(255,255,255,0.18); pointer-events:none; }
+/* 확장된 호버 hit-area (투명) */
+.wave::before { content:""; position:absolute; left:50%; top:0; width:240px; height:180px; transform:translate(-50%,0); border-bottom-left-radius:120px; border-bottom-right-radius:120px;  }
+.wave .wave-container span:nth-child(2){ animation-delay:1.4s; }
+.wave .wave-container span:nth-child(3){ animation-delay:2.8s; }
+.wave .wave-container span:nth-child(2){ animation-delay:1.4s; }
+.wave .wave-container span:nth-child(3){ animation-delay:2.8s; }
+@keyframes langWave { 0% { transform:translate(-50%,-50%) scale(.25); opacity:.9;} 60% { opacity:0; } 100% { transform:translate(-50%,-50%) scale(1.05); opacity:0; } }
+
+.email-event{width: 120px; height: 120px; position: fixed; z-index: 1000; top: 0; left: calc(50% - 60px); border-radius: 0 0 30px 30px; background: transparent;}
+.email-event .email-box {position:absolute; top:60px; left:50%; transform:translate(-50%,6px) scale(.9); opacity:0; background:rgba(18, 21, 30, 0.123); color:#f4f6f8; padding:10px 16px; border-radius:14px; font-size:12.5px; font-weight:500; letter-spacing:.4px; text-decoration:none; border:1px solid rgba(255,255,255,0.16); box-shadow:0 4px 18px -4px rgba(0,0,0,0.55), 0 0 0 0.5px rgba(255,255,255,0.12) inset; backdrop-filter:blur(14px) saturate(160%); -webkit-backdrop-filter:blur(14px) saturate(160%); pointer-events:none; transition:opacity .32s ease, transform .34s cubic-bezier(.22,.61,.36,1), box-shadow .4s ease; white-space:nowrap; cursor: pointer; }
+.email-event .email-box:before { content:""; position:absolute; top:-7px; left:50%; transform:translateX(-50%) rotate(45deg); width:12px; height:12px; background:rgba(18, 21, 30, 0.123); border-left:1px solid rgba(18, 21, 30, 0.123); border-top:1px solid rgba(255,255,255,0.16); box-shadow:0 0 0 0.5px rgba(18, 21, 30, 0.123) inset; }
+.email-event:hover .email-box, .email-event .email-box:hover { opacity:1; transform:translate(-50%,0) scale(1); pointer-events:auto ; cursor: pointer; }
+.email-event .email-box:hover { box-shadow:0 6px 24px -6px rgba(0, 0, 0, 0.295), 0 0 0 0.5px rgba(18, 21, 30, 0.123) inset; }
+
+/*네비게이션*/
+.three-d-viewer-wrapper {
+	width: 100%;
+	height: 100vh;
+	position: relative;
+	z-index: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+.content-box {width: 300px; height: 200px; background-color: black; position:absolute;
+    top: 0; left: 0; 
+    pointer-events: none;}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+    .color-selection {width: 800px; height: 60px;}
+    .color-selection ul {list-style: none; width: 100%; display: flex; flex-direction: row; justify-content: space-between; align-items: center;}
+    .color-selection ul li { width: 80px; height: 80px; border-radius: 1000px; background-color: black; background-image: url("./assets/images/ts.png"); background-size: auto 100%; background-position: center; background-repeat: no-repeat; color: white; display: flex; justify-content: center; align-items: center;}
+	.color-selection ul li:nth-child(1) {background-image: url("./assets/images/ts.png"); }
+	.color-selection ul li:nth-child(2) {background-image: url("./assets/images/3js.png");  background-color: white;}
+	.color-selection ul li:nth-child(3) {background-image: url("./assets/images/gsap.avif"); }
+	.color-selection ul li:nth-child(4) {background-image: url("./assets/images/vscode.png"); }
+	.color-selection ul li:nth-child(5) {background-image: url("./assets/images/react.png"); }
+	.color-selection ul li:nth-child(6) {background-image: url("./assets/images/framer.png"); }
+	.color-selection ul li:nth-child(7) {background-image: url("./assets/images/axios.png"); }
+   
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
+
+
+/****************ABOUT-소개****************/
+	#introductionWrap {width: 100%; }
+	#introductionWrap h2 {font-size: 60px; padding: 20px 10px;}
+	.introduction {width: 100%; display: flex; flex-direction: row; justify-content: space-between; }
+	.introduction .intro-profile {padding-bottom: 10px; width: 487.5px; height: 525px; border: 1px solid #ccc; border-radius: 5px; display: flex; justify-content: center; align-items: center;}
+	.introduction .intro-profile .profile-view { width: 450px; height: 525px; display: flex; flex-direction: column; justify-content: space-around; align-items: center; }
+	.introduction .intro-profile .profile-view .profile-img { width: 200px;  height: 350px; background-color: black;  background-image: url(../src/assets/images/devil9.webp); background-repeat: no-repeat; background-size: 100% auto; background-position: center; border-radius: 10px;}
+	.introduction .intro-profile .profile-view .profile-text {width: 375px; height: 150px;  }
+	.introduction .intro-profile .profile-view .profile-text p {font-size: 18px; font-weight: 600; color: rgb(42, 42, 42);}
+
+	.introduction .intro-skill { padding-bottom: 10px; width: 787.5px; border: 1px solid #ccc; border-radius: 5px; display: flex; justify-content: center; align-items: center;}
+	.introduction .intro-skill .skill-view {margin-top: -25px; width: 950px; height: 525px; display:flex; flex-wrap: wrap; justify-content: space-around; align-items: center;}
+	.introduction .intro-skill .skill-view .license {width: 300px; height: 187.5px; }
+	.introduction .intro-skill .skill-view .education {width: 300px; height: 187.5px; }
+	.introduction .intro-skill .skill-view .skills {width: 300px; height: 187.5px; }
+	.introduction .intro-skill .skill-view .projects {width: 300px; height: 187.5px; }
+	.introduction .intro-skill .skill-view h3 {width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 24px; padding-bottom: 15px; color: #ccc;}
+	.introduction .intro-skill .skill-view h3 svg {border-radius: 100px;}
+	.introduction .intro-skill .skill-view p {padding-bottom: 2px; font-size: 12px;}
+
+
+
+ 
+
+/****************PROFJECTS페이지****************/
+	#projectsWrap {position: relative;  width: 100%;  background-color: #0F0F11; }
+	#projectsWrap h4 {padding: 100px 110px; font-size: 60px; color: rgb(237, 237, 237); }
+	#projectsWrap > p {text-align: right; color: rgb(237, 237, 237); position: absolute; left: 85%; top: 20%;}
+	.projectsView { display: flex; flex-direction: column; justify-content: baseline; align-items: center;}
+	.projectsView ul {padding-top: 140px; list-style: none;}
+	.projectsView ul li {padding-bottom: 100px; position: relative;}
+	.projectsView ul .dropline {width: 100%; height: 400px;  position: relative; overflow: visible;}
+	/* .projectsView ul li:nth-child(2) {color: rgb(131, 131, 131); font-weight: 600; font-size: 36px; text-align: center;} */
+
+
+
+
+
+
+
+
+
+
+

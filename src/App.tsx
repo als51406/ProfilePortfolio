@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import GlassBubble from './assets/Liquidglass';
+import HomeProjects from './pages/HomeProjects';
+import Lenis from 'lenis';
+
+
+
 
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      // duration: 1.0, // seconds based smoothing (optional)
+      // lerp: 0.1, // factor-based smoothing (0..1), use either duration or lerp
+      smoothWheel: true
+    });
+
+    const raf = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<HomeProjects />} />
+      </Routes>
+      <GlassBubble />
+    </>
   );
 }
 
