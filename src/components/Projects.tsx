@@ -1,103 +1,64 @@
-import React from 'react'
-import TiltedCard from '../assets/TiltedCard'
-import ScrollDownCueGSAP from '../assets/Linedown'
+import React from 'react';
+import TiltedCard from '../assets/TiltedCard';
+import ScrollDownCueGSAP from '../assets/Linedown';
+import { projectsData } from '../data/projects';
 
-
-const Projects = () => {
+const Projects: React.FC = () => {
   return (
     <div id='projectsWrap'>
-        <h4>MY PROJECTS</h4>
-        <p>UX / UI <br/>
-            Publishing<br/>
-            Interactive Design<br/>
-            3D Object Conrtol<br/>
-            Front - End Develop
-        </p>
-        <div className='projectsView'>
-            <ul>
-                <li className='dropline'>
-                    <ScrollDownCueGSAP height={720} color="#F0F0DD" />
-                </li>
+      <h4>MY PROJECTS</h4>
+      <p>
+        UX / UI <br/>
+        Publishing<br/>
+        Interactive Design<br/>
+        3D Object Control<br/>
+        Front - End Develop
+      </p>
+      <div className='projectsView'>
+        <ul>
+          <li className='dropline'>
+            <ScrollDownCueGSAP height={720} color="#F0F0DD" />
+          </li>
 
-                {/* 포트폴리오 1 -  */}
-                <li> 
-                    <a
-                        href="https://example.com" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        aria-label="Open project in new tab"
-                        style={{ display: 'inline-block' }}
-                    >
-                    <TiltedCard
-                        imageSrc="https://i.scdn.co/image/ab67616d0000b273d9985092cd88bffd97653b58"
-                        altText="Kendrick Lamar - GNX Album Cover"
-                        // captionText=""
-                        containerHeight="375px"
-                        containerWidth="675px"
-                        imageHeight="375px"
-                        imageWidth="675px"
-                        rotateAmplitude={3}
-                        scaleOnHover={1.17}
-                        showMobileWarning={false}
-                        showTooltip={false}
-                        displayOverlayContent={true}
-                        overlayContent={
-                            <div className="hover-box">
-                                <h5>프로젝트 제목</h5>
-                                <p>프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다
-                                     프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다
-                                     프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다
-                                     프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다</p>
-                            </div>
-                                }
-                            />
-                            </a>
-                        </li>
-
-            {/* 포트폴리오 2 -  */}
-             <li>
-                <a
-                    href="https://example.com" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    aria-label="Open project in new tab"
-                    style={{ display: 'inline-block' }}
-                >
+          {/* 프로젝트 데이터를 map으로 렌더링 */}
+          {projectsData.map((project) => (
+            <li key={project.id}>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${project.title} in new tab`}
+                style={{ display: 'inline-block' }}
+              >
                 <TiltedCard
-                    imageSrc="https://i.scdn.co/image/ab67616d0000b273d9985092cd88bffd97653b58"
-                    altText="Kendrick Lamar - GNX Album Cover"
-                    // captionText=""
-                    containerHeight="375px"
-                    containerWidth="675px"
-                    imageHeight="375px"
-                    imageWidth="675px"
-                    rotateAmplitude={3}
-                    scaleOnHover={1.2}
-                    showMobileWarning={false}
-                    showTooltip={false}
-                    displayOverlayContent={true}
-                    overlayContent={
-                      <div className="hover-box">
-                                <h5>프로젝트 제목</h5>
-                                <p>프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다
-                                     프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다
-                                     프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다 프로젝트 설명입니다</p>
-                            </div>
-                }/></a>
+                  imageSrc={project.image}
+                  altText={project.altText}
+                  containerHeight="375px"
+                  containerWidth="675px"
+                  imageHeight="375px"
+                  imageWidth="675px"
+                  rotateAmplitude={3}
+                  scaleOnHover={project.scaleOnHover || 1.2}
+                  showMobileWarning={false}
+                  showTooltip={false}
+                  displayOverlayContent={true}
+                  overlayContent={
+                    <div className="hover-box">
+                      <h5>{project.title}</h5>
+                      <p>{project.description}</p>
+                    </div>
+                  }
+                />
+              </a>
             </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
 
-            {/* 포트폴리오 3 -  */}
-             <li>
-                <a
-                    href="https://example.com" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    aria-label="Open project in new tab"
-                    style={{ display: 'inline-block' }}
-                >
-            <TiltedCard
-                imageSrc="https://i.scdn.co/image/ab67616d0000b273d9985092cd88bffd97653b58"
-                altText="Kendrick Lamar - GNX Album Cover"
+export default Projects;
                 // captionText=""
                 containerHeight="375px"
                 containerWidth="675px"
