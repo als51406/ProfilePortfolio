@@ -12,18 +12,20 @@ import Lenis from 'lenis';
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
-      // duration: 1.0, // seconds based smoothing (optional)
-      // lerp: 0.1, // factor-based smoothing (0..1), use either duration or lerp
-      smoothWheel: true
+      smoothWheel: true,
+      lerp: 0.1,
+      duration: 1.2
     });
 
+    let rafId: number;
     const raf = (time: number) => {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     };
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);
