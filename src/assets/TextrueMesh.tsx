@@ -34,11 +34,10 @@ const TextrueMesh: React.FC<Props> = ({
   // Configure texture once loaded
   useMemo(() => {
     if (!texture) return;
-    // Preserve original colors
-    // @ts-ignore - support for r152+
-    texture.colorSpace = (THREE as any).SRGBColorSpace || THREE.SRGBColorSpace;
+    // Preserve original colors - THREE.SRGBColorSpace is available in r152+
+    texture.colorSpace = THREE.SRGBColorSpace;
     if (typeof flipY === 'boolean') texture.flipY = flipY;
-    const maxAniso = (gl.capabilities as any).getMaxAnisotropy?.() || 1;
+    const maxAniso = gl.capabilities.getMaxAnisotropy();
     texture.anisotropy = Math.max(texture.anisotropy ?? 1, maxAniso);
     texture.minFilter = THREE.LinearMipmapLinearFilter;
     texture.magFilter = THREE.LinearFilter;

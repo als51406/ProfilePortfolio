@@ -46,7 +46,7 @@ function CameraController() {
 
 //props 타입 선언
 interface ModelProps {
-  carouselRef?: React.Ref<MeshCarousel3DHandle>;
+  carouselRef?: React.RefObject<MeshCarousel3DHandle | null>;
 }
 //3D 오브젝트 컨텐츠
 function Model({ carouselRef }: ModelProps) {
@@ -88,7 +88,7 @@ function Model({ carouselRef }: ModelProps) {
 
       {/* 메쉬 기반 3D 무한 캐러셀 (3패널) */}
         <MeshCarousel3D
-        ref={carouselRef as any}
+        ref={carouselRef}
         count={3}
         radius={9}
         y={1.5}

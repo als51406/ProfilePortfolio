@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import * as THREE from 'three';
-import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
+import { Canvas, useFrame, useLoader, useThree, ThreeEvent } from '@react-three/fiber';
 import { Environment, Html } from '@react-three/drei';
 
 //텍스쳐 import
@@ -87,17 +87,21 @@ const SkillsSphere = () => {
                 if (el) meshRefs.current[index] = el;
               }}
               position={[startX + index * spacing, y, 0]}
-              onPointerOver={(e) => {
+              onPointerOver={(e: ThreeEvent<PointerEvent>) => {
                 e.stopPropagation();
                 scaleTargets.current[index] = 1.35;
-                (e.eventObject as any).userData.__hovered = true;
+                if (e.eventObject.userData) {
+                  e.eventObject.userData.__hovered = true;
+                }
                 setHoveredIndex(index);
                 if (typeof document !== 'undefined') document.body.style.cursor = 'pointer';
               }}
-              onPointerOut={(e) => {
+              onPointerOut={(e: ThreeEvent<PointerEvent>) => {
                 e.stopPropagation();
                 scaleTargets.current[index] = 1;
-                (e.eventObject as any).userData.__hovered = false;
+                if (e.eventObject.userData) {
+                  e.eventObject.userData.__hovered = false;
+                }
                 // pointer가 라벨 위로 이동할 때 사라지지 않도록 하고 싶다면 Html에 pointer-events:auto로 별도 처리 필요
                 setHoveredIndex((prev) => (prev === index ? null : prev));
                 if (typeof document !== 'undefined') document.body.style.cursor = '';
