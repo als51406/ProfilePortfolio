@@ -1,11 +1,10 @@
-
-
 import { OrbitControls, useHelper, useGLTF, PerspectiveCamera } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
 
-
+// 3D 모델 사전 로딩
+useGLTF.preload("./models/apple_watch_ultra_2.glb");
 
 function MyElement3D() {
     const model1 = useGLTF("./models/apple_watch_ultra_2.glb");

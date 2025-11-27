@@ -10,8 +10,10 @@ import Detailview from '../assets/Detailview';
 import TextrueMesh from '../assets/TextrueMesh';
 import promo from '../assets/images/프로모션.png';
 
-
-
+// 3D 모델 사전 로딩 - 초기 렌더링 성능 향상
+useGLTF.preload(process.env.PUBLIC_URL + '/3d/studio_30.glb');
+useGLTF.preload(process.env.PUBLIC_URL + '/3d/apple_watch_ultra_2.glb');
+useGLTF.preload('./models/apple_watch_ultra_2.glb');
 
 // 마우스 움직임에 따른 카메라 무빙
 function CameraController() {
