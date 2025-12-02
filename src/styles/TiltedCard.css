@@ -39,6 +39,26 @@
   border-radius: 15px;
   will-change: transform;
   transform: translateZ(0);
+  
+  /* 흰색 네온 효과 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.3),
+    0 0 10px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.1),
+    0 0 40px rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+/* 호버 시 네온 효과 강화 */
+.tilted-card-figure:hover .tilted-card-img {
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 0 7px rgba(255, 255, 255, 0.42),
+    0 0 12px rgba(255, 255, 255, 0.32),
+    0 0 22px rgba(255, 255, 255, 0.22),
+    0 0 42px rgba(255, 255, 255, 0.12),
+    0 0 62px rgba(255, 255, 255, 0.07);
 }
 
 .tilted-card-overlay {
