@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, forwardRef, useImperativeHandle, useEffect, Suspense } from 'react';
+import React, { useMemo, useRef, forwardRef, useImperativeHandle, useEffect, Suspense, useState } from 'react';
 import * as THREE from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useDrag } from '@use-gesture/react';
@@ -33,10 +33,12 @@ type Props = {
   lockPanelToRTAspect?: boolean; // 중앙 패널 기하를 RT 종횡비(예: 16:9)에 맞춤
   rtLookAt?: [number, number, number]; // RT 카메라가 바라볼 타겟(기본 원점)
   hoverScale?: number; // 호버 시 추가 배율(콘텐츠 그룹에 곱셈)
-  // RenderTexture 내부 콘텐츠를 패널별로 지정
-  rtContent?: (index: number) => React.ReactNode;
+  // RenderTexture 내부 콘텐츠를 패널별로 지정 (activeIndex 전달)
+  rtContent?: (index: number, activeIndex: number) => React.ReactNode;
   // 패널 클릭 핸들러 (패널 인덱스 전달)
   onPanelClick?: (index: number) => void;
+  // 인덱스 변경 콜백
+  onIndexChange?: (index: number) => void;
     
 };
 
@@ -74,6 +76,7 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
   hoverScale = 1.06,
   rtContent,
   onPanelClick,
+  onIndexChange,
   }: Props,
   ref
 ) {
@@ -94,6 +97,9 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
   const lastDx = useRef(0);
   const currentIndex = useRef(0);
   const panelSlot = useRef<number[]>(Array.from({ length: count }, (_, i) => i % count)); // panel i -> slot index
+  
+  // 활성 인덱스 상태 (React state로 관리하여 리렌더링 트리거)
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const discrete = Array.isArray(positions) && positions.length >= count; // 슬롯 모드
   const slotLocals = useMemo(() => {
@@ -153,11 +159,23 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
         if (Math.abs(diff) < 1e-3) snapTarget.current = null;
       }
       if (groupRef.current) groupRef.current.rotation.y = angle.current;
-      currentIndex.current = Math.round(angle.current / step);
+      const newIndex = ((Math.round(angle.current / step) % count) + count) % count;
+      if (currentIndex.current !== newIndex) {
+        currentIndex.current = newIndex;
+        setActiveIndex(newIndex);
+        onIndexChange?.(newIndex);
+      }
+      currentIndex.current = newIndex;
     } else {
       // 슬롯 모드: 현재 front는 slot 0을 점유 중인 패널
       const idx = panelSlot.current.findIndex((s) => s === 0);
-      currentIndex.current = idx >= 0 ? idx : 0;
+      const newIndex = idx >= 0 ? idx : 0;
+      if (currentIndex.current !== newIndex) {
+        currentIndex.current = newIndex;
+        setActiveIndex(newIndex);
+        onIndexChange?.(newIndex);
+      }
+      currentIndex.current = newIndex;
     }
 
     // 중앙 패널 화면-픽셀 맞춤: slot 0 패널의 콘텐츠 그룹을 원하는 픽셀(예: 1280x720)로 보이도록 스케일
@@ -397,7 +415,7 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
                       />
                       <ambientLight intensity={0.05} />
                       <Suspense fallback={null}>
-                        {rtContent ? rtContent(i) : <Detailview />} 
+                        {rtContent ? rtContent(i, activeIndex) : <Detailview />} 
                       </Suspense>
                     </RenderTexture>
                   </meshBasicMaterial>

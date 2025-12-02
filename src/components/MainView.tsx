@@ -8,6 +8,7 @@ import MyElement3D from '../assets/MyElement3D';
 import MeshCarousel3D, { MeshCarousel3DHandle } from './MeshCarousel3D';
 import Detailview from '../assets/Detailview';
 import TextrueMesh from '../assets/TextrueMesh';
+import VideoMesh from '../assets/VideoMesh';
 import promo from '../assets/images/프로모션.png';
 
 // 3D 모델 사전 로딩 - 초기 렌더링 성능 향상
@@ -120,33 +121,51 @@ function Model({ carouselRef }: ModelProps) {
           [7, 1, -0.5],
           [-7, 1, -0.5],
         ]}
-        rtContent={(i) => {
+        rtContent={(i, activeIndex) => {
+          // 스크린 0: 영상
           if (i === 0) {
             return (
               <>
-                {/* 개별 배경색도 가능: */}
-                <color attach="background" args={["#101010"]} />
-                <Detailview modelUrl={process.env.PUBLIC_URL + '/3d/apple_watch_ultra_2.glb'} fitBox={2.8} rotateSpeed={0.7} />
+                <color attach="background" args={["#000000"]} />
+                <VideoMesh 
+                  src={process.env.PUBLIC_URL + '/videos/3d_vd.mov'} 
+                  width={10.44}
+                  height={5.8}
+                  loop 
+                  muted 
+                  isActive={activeIndex === 0}
+                />
               </>
             );
           }
+          // 스크린 1: 영상
           if (i === 1) {
             return (
               <>
-                {/* 배경색 유지 또는 조정 가능 */}
-                <color attach="background" args={["#0b0b0b"]} />
-                {/* 이미지 비율에 맞게 높이 자동 계산 */}
-                <TextrueMesh src={promo} width={2} toneMapped={false} />
+                <color attach="background" args={["#000000"]} />
+                <VideoMesh 
+                  src={process.env.PUBLIC_URL + '/videos/3d_vd.mov'} 
+                  width={10.44}
+                  height={5.8}
+                  loop 
+                  muted 
+                  isActive={activeIndex === 1}
+                />
               </>
             );
           }
-          // i === 2: MyElement3D 예시
+          // 스크린 2: 영상
           return (
             <>
-              <color attach="background" args={["#121212"]} />
-              <group scale={[0.5, 0.5, 0.5]}>
-                <MyElement3D />
-              </group>
+              <color attach="background" args={["#000000"]} />
+              <VideoMesh 
+                src={process.env.PUBLIC_URL + '/videos/3d_vd.mov'} 
+                width={10.44}
+                height={5.8}
+                loop 
+                muted 
+                isActive={activeIndex === 2}
+              />
             </>
           );
         }}
