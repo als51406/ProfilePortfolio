@@ -33,8 +33,8 @@ type Props = {
   lockPanelToRTAspect?: boolean; // 중앙 패널 기하를 RT 종횡비(예: 16:9)에 맞춤
   rtLookAt?: [number, number, number]; // RT 카메라가 바라볼 타겟(기본 원점)
   hoverScale?: number; // 호버 시 추가 배율(콘텐츠 그룹에 곱셈)
-  // RenderTexture 내부 콘텐츠를 패널별로 지정 (activeIndex 전달)
-  rtContent?: (index: number, activeIndex: number) => React.ReactNode;
+  // RenderTexture 내부 콘텐츠를 패널별로 지정 (activeIndex, isHovered 전달)
+  rtContent?: (index: number, activeIndex: number, isHovered: boolean) => React.ReactNode;
   // 패널 클릭 핸들러 (패널 인덱스 전달)
   onPanelClick?: (index: number) => void;
   // 인덱스 변경 콜백
@@ -100,6 +100,9 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
   
   // 활성 인덱스 상태 (React state로 관리하여 리렌더링 트리거)
   const [activeIndex, setActiveIndex] = useState(0);
+  
+  // 호버 상태 (패널별로 관리)
+  const [hoveredPanel, setHoveredPanel] = useState<number | null>(null);
 
   const discrete = Array.isArray(positions) && positions.length >= count; // 슬롯 모드
   const slotLocals = useMemo(() => {
@@ -376,6 +379,8 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
                 e.stopPropagation();
                 if (typeof onPanelClick === 'function') onPanelClick(i);
               }}
+              onPointerEnter={() => setHoveredPanel(i)}
+              onPointerLeave={() => setHoveredPanel(null)}
             >
               <planeGeometry args={[panelW * 1.15, panelH * 1.15]} />
               <meshBasicMaterial transparent opacity={0} depthWrite={false} />
@@ -385,7 +390,10 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
               renderPanel(i)
             ) : (
               <group ref={(el) => { if (el) contentRefs.current[i] = el; }}>
-                <mesh>
+                <mesh
+                  onPointerEnter={() => setHoveredPanel(i)}
+                  onPointerLeave={() => setHoveredPanel(null)}
+                >
                   {(() => {
                     const aspect = rtWidth / rtHeight;
                     const h = lockPanelToRTAspect ? panelW / aspect : panelH;
@@ -415,7 +423,7 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
                       />
                       <ambientLight intensity={0.05} />
                       <Suspense fallback={null}>
-                        {rtContent ? rtContent(i, activeIndex) : <Detailview />} 
+                        {rtContent ? rtContent(i, activeIndex, hoveredPanel === i) : <Detailview />} 
                       </Suspense>
                     </RenderTexture>
                   </meshBasicMaterial>

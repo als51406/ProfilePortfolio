@@ -103,9 +103,9 @@ function Model({ carouselRef }: ModelProps) {
         enableDrag={false}
         onPanelClick={(i) => {
           const urls = [
-            'https://developer.apple.com',
-            'https://www.behance.net/gallery/235329275/_',
-            'https://github.com',
+            'https://als51406.mycafe24.com/3dPortfolio/',
+            'http://zoomedia.synology.me:7780/',
+            'http://zoomedia.synology.me:9000/',
           ];
           const url = urls[i] ?? urls[0];
           window.open(url, '_blank', 'noopener,noreferrer');
@@ -121,8 +121,11 @@ function Model({ carouselRef }: ModelProps) {
           [7, 1, -0.5],
           [-7, 1, -0.5],
         ]}
-        rtContent={(i, activeIndex) => {
-          // 스크린 0: 영상
+        rtContent={(i, activeIndex, isHovered) => {
+          // 중앙 스크린(activeIndex와 같은 패널)이고 호버 시에만 재생
+          const shouldPlay = (i === activeIndex) && isHovered;
+          
+          // 스크린 1: 영상
           if (i === 0) {
             return (
               <>
@@ -133,38 +136,38 @@ function Model({ carouselRef }: ModelProps) {
                   height={5.8}
                   loop 
                   muted 
-                  isActive={activeIndex === 0}
-                />
-              </>
-            );
-          }
-          // 스크린 1: 영상
-          if (i === 1) {
-            return (
-              <>
-                <color attach="background" args={["#000000"]} />
-                <VideoMesh 
-                  src={process.env.PUBLIC_URL + '/videos/3d_vd.mov'} 
-                  width={10.44}
-                  height={5.8}
-                  loop 
-                  muted 
-                  isActive={activeIndex === 1}
+                  isActive={shouldPlay}
                 />
               </>
             );
           }
           // 스크린 2: 영상
+          if (i === 1) {
+            return (
+              <>
+                <color attach="background" args={["#000000"]} />
+                <VideoMesh 
+                  src={process.env.PUBLIC_URL + '/videos/todaktok_vd.mov'} 
+                  width={12}
+                  height={5.8}
+                  loop 
+                  muted 
+                  isActive={shouldPlay}
+                /> 
+              </>
+            );
+          }
+          // 스크린 3: 영상
           return (
             <>
               <color attach="background" args={["#000000"]} />
               <VideoMesh 
-                src={process.env.PUBLIC_URL + '/videos/3d_vd.mov'} 
-                width={10.44}
+                src={process.env.PUBLIC_URL + '/videos/purfit_vd.mov'} 
+                width={12.006}
                 height={5.8}
                 loop 
                 muted 
-                isActive={activeIndex === 2}
+                isActive={shouldPlay}
               />
             </>
           );
