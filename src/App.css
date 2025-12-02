@@ -82,7 +82,7 @@ header nav .menu-bar svg {width: 15px; fill: white;}
 	.introduction {width: 100%; display: flex; flex-direction: row; justify-content: space-between; }
 	.introduction .intro-profile {padding-bottom: 10px; width: 487.5px; height: 525px; border: 1px solid #ccc; border-radius: 5px; display: flex; justify-content: center; align-items: center;}
 	.introduction .intro-profile .profile-view { width: 450px; height: 525px; display: flex; flex-direction: column; justify-content: space-around; align-items: center; }
-	.introduction .intro-profile .profile-view .profile-img { width: 200px;  height: 350px; background-color: black;  background-image: url(../src/assets/images/devil9.webp); background-repeat: no-repeat; background-size: 100% auto; background-position: center; border-radius: 10px;}
+	.introduction .intro-profile .profile-view .profile-img { width: 200px;  height: 350px; background-color: black;  background-image: url(./assets/images/kms.jpg); background-repeat: no-repeat; background-size: 100% auto; background-position: center; border-radius: 10px;}
 	.introduction .intro-profile .profile-view .profile-text {width: 375px; height: 150px;  }
 	.introduction .intro-profile .profile-view .profile-text p {font-size: 18px; font-weight: 600; color: rgb(42, 42, 42);}
 

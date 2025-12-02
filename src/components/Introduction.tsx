@@ -9,7 +9,7 @@ const Introduction = () => {
                     <div className='profile-view'>
                         <div className='profile-img'></div>
                         <div className='profile-text'>
-                            <p>안녕하세요. 퍼블리싱도 하고싶고<br/>인터랙티브 디자인도 하고싶고<br/>3D 개발역량도 키우고싶은 신입입니다</p>
+                            <p>사용자 경험에 생동감을 불어넣는<br/><strong>인터랙티브 웹 디자이너</strong>입니다.<br/>React, Three.js, GSAP의 다양한 기술 경험으로<br/>몰입감 있는 웹 경험을 설계합니다.</p>
                         </div>
                     </div>
             </section>
