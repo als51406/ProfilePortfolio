@@ -23,7 +23,7 @@ const Introduction = () => {
                         </h3>
                         <div><p>REACT</p>
                         <p>TYPESCRIPT</p></div>
-                        <div><p>TRHEE.JS</p>
+                        <div><p>THREE.JS</p>
                         <p>HTML5</p></div>
                         <div> <p>CSS3</p>
                         <p>FIGMA</p></div>

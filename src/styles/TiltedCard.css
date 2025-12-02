@@ -72,8 +72,8 @@
   /* bottom: calc(100% + 10px); 카드의 상단 밖으로 10px 띄움 */
   transform: translateX(-50%);
   padding: 10px 14px;
-  background: #0000003a;
-  color: #000;
+  background: rgba(0, 0, 0, 0.85);
+  color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.25);
   white-space: normal; /* allow line wrapping inside */
@@ -84,6 +84,7 @@
 .hover-box h5 {
   margin: 0 0 8px 0;
   text-align: center;
+  color: #ffffff;
 }
 
 .hover-box h5 {padding-bottom: 10px;}
@@ -97,6 +98,7 @@
   word-wrap: break-word;
   white-space: normal;
   text-align: left;
+  color: #e0e0e0;
 }
 
 
