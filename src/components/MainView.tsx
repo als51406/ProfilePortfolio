@@ -93,7 +93,7 @@ interface ModelProps {
 // ============================================================
 function Model({ carouselRef }: ModelProps) {
     // GLB 모델 로드
-    const gltf = useGLTF(process.env.PUBLIC_URL + '/3d/studio_30.glb');
+    const gltf = useGLTF(process.env.PUBLIC_URL + '/3d/studio_12.02_10.glb');
     
     
     
@@ -191,7 +191,7 @@ function Model({ carouselRef }: ModelProps) {
                 <color attach="background" args={["#000000"]} />
                 <VideoMesh 
                   src={process.env.PUBLIC_URL + '/videos/3d_vd.webm'} 
-                  width={10.44}
+                  width={11.44}
                   height={5.8}
                   loop 
                   muted 
@@ -206,7 +206,7 @@ function Model({ carouselRef }: ModelProps) {
               <>
                 <color attach="background" args={["#000000"]} />
                 <VideoMesh 
-                  src={process.env.PUBLIC_URL + '/videos/todaktok_vd.webm'} 
+                  src={process.env.PUBLIC_URL + '/videos/todaktok_vd1.webm'} 
                   width={12}
                   height={5.8}
                   loop 
