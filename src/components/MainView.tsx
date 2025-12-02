@@ -93,8 +93,8 @@ function Model({ carouselRef }: ModelProps) {
         count={3}
         radius={9}
         y={1.5}
-        panelW={2}
-        panelH={1.2}
+        panelW={3}
+        panelH={1.5}
         sensitivity={0.007}
         focusScale={1.8}
         inertia

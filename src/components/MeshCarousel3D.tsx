@@ -170,14 +170,9 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
       }
       currentIndex.current = newIndex;
     } else {
-      // 슬롯 모드: 현재 front는 slot 0을 점유 중인 패널
+      // 슬롯 모드: currentIndex만 업데이트 (activeIndex는 애니메이션 완료 후 업데이트)
       const idx = panelSlot.current.findIndex((s) => s === 0);
       const newIndex = idx >= 0 ? idx : 0;
-      if (currentIndex.current !== newIndex) {
-        currentIndex.current = newIndex;
-        setActiveIndex(newIndex);
-        onIndexChange?.(newIndex);
-      }
       currentIndex.current = newIndex;
     }
 
@@ -209,10 +204,13 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
         // 호버 배율 적용
         const hoverMul = hoverFlags.current[i] ? hoverScale : 1;
         const desired = target * hoverMul;
-        // 부드럽게 보간
+        // 더 부드럽게 보간 (0.2 -> 0.08로 낮춤)
         const cur = cg.scale.y;
-        const next = THREE.MathUtils.lerp(cur, desired, 0.2);
-        cg.scale.set(next, next, next);
+        const lerpFactor = 0.08;
+        const next = THREE.MathUtils.lerp(cur, desired, lerpFactor);
+        // 차이가 매우 작으면 즉시 적용 (떨림 방지)
+        const finalScale = Math.abs(desired - next) < 0.001 ? desired : next;
+        cg.scale.set(finalScale, finalScale, finalScale);
       }
     }
 
@@ -287,6 +285,10 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
     if (!discrete) return goTo(currentIndex.current + 1);
     const newMap = panelSlot.current.map((s) => (s + 1) % count);
     panelSlot.current = newMap;
+    
+    // 애니메이션 완료 후 activeIndex 업데이트
+    const newFrontIdx = newMap.findIndex((s) => s === 0);
+    
     for (let p = 0; p < count; p++) {
       const g = panelRefs.current[p];
       const sIdx = newMap[p];
@@ -294,13 +296,25 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
       const [x, yy, z] = slotLocals[sIdx];
       const sc = slotScaleVals[sIdx] ?? 1;
       gsap.to(g.position, { x, y: yy, z, duration: 0.6, ease: 'power3.out' });
-      gsap.to(g.scale, { x: sc, y: sc, z: sc, duration: 0.6, ease: 'power3.out' });
+      gsap.to(g.scale, { 
+        x: sc, y: sc, z: sc, 
+        duration: 0.6, 
+        ease: 'power3.out',
+        onComplete: p === newFrontIdx ? () => {
+          setActiveIndex(newFrontIdx);
+          onIndexChange?.(newFrontIdx);
+        } : undefined
+      });
     }
   };
   const prev = () => {
     if (!discrete) return goTo(currentIndex.current - 1);
     const newMap = panelSlot.current.map((s) => (s - 1 + count) % count);
     panelSlot.current = newMap;
+    
+    // 애니메이션 완료 후 activeIndex 업데이트
+    const newFrontIdx = newMap.findIndex((s) => s === 0);
+    
     for (let p = 0; p < count; p++) {
       const g = panelRefs.current[p];
       const sIdx = newMap[p];
@@ -308,7 +322,15 @@ const MeshCarousel3D = forwardRef<MeshCarousel3DHandle, Props>(function MeshCaro
       const [x, yy, z] = slotLocals[sIdx];
       const sc = slotScaleVals[sIdx] ?? 1;
       gsap.to(g.position, { x, y: yy, z, duration: 0.6, ease: 'power3.out' });
-      gsap.to(g.scale, { x: sc, y: sc, z: sc, duration: 0.6, ease: 'power3.out' });
+      gsap.to(g.scale, { 
+        x: sc, y: sc, z: sc, 
+        duration: 0.6, 
+        ease: 'power3.out',
+        onComplete: p === newFrontIdx ? () => {
+          setActiveIndex(newFrontIdx);
+          onIndexChange?.(newFrontIdx);
+        } : undefined
+      });
     }
   };
 
