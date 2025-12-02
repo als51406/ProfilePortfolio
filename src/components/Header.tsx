@@ -1,12 +1,32 @@
+/**
+ * @file Header.tsx
+ * @description 웹사이트 헤더 컴포넌트
+ * 
+ * 주요 기능:
+ * - 로고/타이틀 (클릭 시 홈으로 이동)
+ * - PillNav 네비게이션 메뉴 (HOME, PROJECTS, ABOUT)
+ * - 이메일 연락처 표시
+ * - 파동 애니메이션 효과 (wave)
+ * - About 모달 (React Portal + Framer Motion)
+ * 
+ * 모달 구현:
+ * - createPortal로 body에 렌더링 (z-index 문제 해결)
+ * - AnimatePresence로 마운트/언마운트 애니메이션
+ * - 배경 클릭 시 모달 닫기
+ */
+
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Introduction from './Introduction';
 import PillNav from '../assets/PillNav';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
-// router link not needed here because PillNav renders Link internally
 
+// ============================================================
+// 모달 스타일 정의
+// ============================================================
 
+/** 모달 오버레이 스타일 (배경) */
 const modalStyle: React.CSSProperties = {
     position: 'fixed',
     top: 0,
@@ -24,6 +44,7 @@ const modalStyle: React.CSSProperties = {
     transition: 'background 0.3s',
 };
 
+/** 모달 콘텐츠 박스 스타일 */
 const modalContentStyle: React.CSSProperties = {
     background: 'rgba(239, 239, 239, 1)',
     borderRadius: 28,
@@ -41,7 +62,7 @@ const modalContentStyle: React.CSSProperties = {
     transition: 'box-shadow 0.3s, background 0.3s'
 };
 
-
+/** 모달 닫기 버튼 스타일 */
 const closeBtnStyle: React.CSSProperties = {
     position: 'absolute',
     top: 18,
@@ -61,38 +82,51 @@ const closeBtnStyle: React.CSSProperties = {
     transition: 'background 0.2s',
 };
 
+// ============================================================
+// Header 컴포넌트
+// ============================================================
 const Header: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    
+    // About 모달 표시 상태
     const [showAbout, setShowAbout] = useState(false);
-    // Projects는 라우팅으로 이동하므로 별도 모달 상태 불필요
 
+    /**
+     * About 클릭 핸들러
+     * - 기본 링크 동작 방지 후 모달 표시
+     */
     const handleAboutClick = (e: React.MouseEvent) => {
         e.preventDefault();
         setShowAbout(true);
     };
-    // const handleProjectsClick = () => {};
+    
+    /** About 모달 닫기 */
     const handleCloseAbout = () => setShowAbout(false);
-    // const handleCloseProjects = () => {};
 
     return (
         <div id='headerWrap'>
-                        <header>
-                                <h1
-                                    onClick={() => navigate('/')}
-                                    style={{ color: location.pathname === '/projects' ? '#e8e8e8' : undefined, cursor: 'pointer' }}
-                                    role="link"
-                                    tabIndex={0}
-                                    aria-label="홈으로 이동"
-                                    onKeyDown={(e) => { 
-                                        if (e.key === 'Enter' || e.key === ' ') {
-                                            e.preventDefault();
-                                            navigate('/');
-                                        }
-                                    }}
-                                >
-                                    Design Profile
-                                </h1>
+            <header>
+                {/* ==================== 로고/타이틀 ==================== */}
+                {/* 클릭 시 홈으로 이동, 키보드 접근성 지원 */}
+                <h1
+                    onClick={() => navigate('/')}
+                    style={{ color: location.pathname === '/projects' ? '#e8e8e8' : undefined, cursor: 'pointer' }}
+                    role="link"
+                    tabIndex={0}
+                    aria-label="홈으로 이동"
+                    onKeyDown={(e) => { 
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            navigate('/');
+                        }
+                    }}
+                >
+                    Design Profile
+                </h1>
+                
+                {/* ==================== 네비게이션 메뉴 ==================== */}
+                {/* PillNav: 알약 모양의 애니메이션 네비게이션 */}
                 <PillNav
                     items={[
                         { label: 'HOME', href: '/' },
@@ -107,14 +141,18 @@ const Header: React.FC = () => {
                     hoveredPillTextColor="#000000"
                     pillTextColor="#F0F0DD"
                 />
-                        </header>
-                        <div className='email-event'>
-                             <a href="mailto:als51406@gmail.com" className="email-box" aria-label="Send email">
-                            als51406@gmail.com
-                            </a>
-                        </div>
+            </header>
+            
+            {/* ==================== 이메일 연락처 ==================== */}
+            <div className='email-event'>
+                <a href="mailto:als51406@gmail.com" className="email-box" aria-label="Send email">
+                    als51406@gmail.com
+                </a>
+            </div>
+            
+            {/* ==================== 파동 애니메이션 효과 ==================== */}
+            {/* 원형 라인이 퍼져나가는 애니메이션 (CSS로 구현) */}
             <div className='wave'>
-                {/* 파동치는 원형 라인 효과 */}
                 <div className="wave-container" aria-hidden="true">
                     <span></span>
                     <span></span>
@@ -122,12 +160,14 @@ const Header: React.FC = () => {
                 </div>
             </div>
 
+            {/* ==================== About 모달 (React Portal) ==================== */}
+            {/* createPortal로 body에 직접 렌더링하여 z-index 문제 해결 */}
             {createPortal(
                 <AnimatePresence>
                     {showAbout && (
                         <motion.div
                             style={modalStyle}
-                            onClick={handleCloseAbout}
+                            onClick={handleCloseAbout}  // 배경 클릭 시 닫기
                             role="dialog"
                             aria-modal="true"
                             initial={{ opacity: 0 }}
@@ -135,21 +175,23 @@ const Header: React.FC = () => {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.18, ease: 'easeOut' }}
                         >
-                            <motion.div //콘텐츠 박스 애니메이션( 이 값을 조정하면 됨 )
+                            {/* 모달 콘텐츠 박스 */}
+                            <motion.div
                                 style={modalContentStyle}
-                                onClick={e => e.stopPropagation()}
+                                onClick={e => e.stopPropagation()}  // 콘텐츠 클릭 시 닫기 방지
                                 initial={{ opacity: 0, y: 60, x: 0 }}
                                 animate={{ opacity: 1, y: 0, x :0 }}
                                 exit={{ opacity: 0, y: -20 }}
                                 transition={{ duration: 0.24, ease: 'easeOut' }}
                             >
+                                {/* 닫기 버튼 */}
                                 <button style={closeBtnStyle} onClick={handleCloseAbout} aria-label="Close">×</button>
+                                
+                                {/* Introduction 컴포넌트 (자기소개 내용) */}
                                 <Introduction />
                             </motion.div>
                         </motion.div>
                     )}
-
-                    {/* Projects는 별도 페이지로 이동하므로 모달 제거 */}
                 </AnimatePresence>,
                 document.body
             )}
