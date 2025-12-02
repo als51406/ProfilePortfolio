@@ -17,7 +17,7 @@ export const projectsData: Project[] = [
     description: '프로필 소개 사이트입니다. React, TypeScript, Three.js를 활용한 프로필 웹 사이트입니다. 제 작업물들을 조금이나마 생동감 있게 전달되었으면 하는 마음에 제작하게 되었습니다. GSAP 기반의 부드러운 카메라 무빙, Framer Motion의 섬세한 UI 인터랙션, 그리고 Lenis 스크롤로 몰입감 있는 사용자 경험을 구현했습니다. ',
     image: '/images/profile_sc2.png',
     link: 'https://als51406.mycafe24.com',
-    altText: 'Profile Portfolio - 현재 프로필 사이트',
+    altText: 'Profile Portfolio - 프로필 소개 사이트',
     scaleOnHover: 1.17
   },
   {
@@ -53,7 +53,7 @@ export const projectsData: Project[] = [
     description: 'Gemini-3 AI 모델을 활용하여 간단하게 제작한 남성 패션 쇼핑몰입니다. AI를 활용하여 디자인 영역까지 컨트롤 하여 보다 효율적인 작업물을 만들어 낼 수 있었습니다. 웹 개발 기획력과 AI를 다루는 역량을 기를 수 있었습니다.',
     image: '/images/trenonmen_sc.png',
     link: 'https://als51406.mycafe24.com/trenonmen',
-    altText: '새 프로젝트 설명',
+    altText: 'Fashion shopping mall with Gemini-3',
     scaleOnHover: 1.2
   },
   {
@@ -63,6 +63,15 @@ export const projectsData: Project[] = [
     image: '/images/mui_sc.png',
     link: 'https://als51406.mycafe24.com/mui/',
     altText: 'business data chart dashboard',
+    scaleOnHover: 1.2
+  },
+  {
+    id: 7,
+    title: '홍콩 여행 프로모션',
+    description: 'Adobe Photoshop과 Figma를 활용해 제작한 홍콩 여행 프로모션입니다. 디자인 툴을 다루는 역량을 기르기 위해 제작되었습니다. 여행 일정과 프로모션의 디자인을 만들어내는 전반적인 과정을 경험할 수 있었습니다. ',
+    image: '/images/HK_sc.png',
+    link: 'https://www.behance.net/gallery/235329275/_',
+    altText: '홍콩 여행 프로모션',
     scaleOnHover: 1.2
   },
 
