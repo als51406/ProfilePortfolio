@@ -1,46 +1,234 @@
-# Getting Started with Create React App
+# 🎨 Profile Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
 
-## Available Scripts
+![React](https://img.shields.io/badge/React-19.1.1-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Three.js](https://img.shields.io/badge/Three.js-0.180.0-000000?style=for-the-badge&logo=three.js&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.23.14-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 
-In the project directory, you can run:
+**몰입감 있는 3D 인터랙티브 포트폴리오 웹사이트**
 
-### `npm start`
+[🌐 Live Demo](https://als51406.mycafe24.com) · [📝 Projects Page](https://als51406.mycafe24.com/#/projects)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+</div>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## 📖 프로젝트 소개
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Profile Portfolio**는 프론트엔드 개발자로서의 기술적 역량과 창의성을 보여주기 위해 제작한 **인터랙티브 3D 포트폴리오 웹사이트**입니다.
 
-### `npm run build`
+단순한 정적 페이지를 넘어, Three.js 기반의 3D 환경에서 프로젝트들을 생동감 있게 전달하고자 했습니다. 마우스 움직임에 반응하는 카메라 패럴랙스, 3D 캐러셀을 통한 프로젝트 쇼케이스, 그리고 섬세한 UI 인터랙션을 통해 방문자에게 몰입감 있는 경험을 제공합니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ✨ 주요 특징
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 🎬 3D 인터랙티브 경험
+- **마우스 패럴랙스 카메라**: 마우스 움직임에 따라 부드럽게 반응하는 카메라 컨트롤
+- **3D 메쉬 캐러셀**: RenderTexture 기반의 3D 공간에서 프로젝트 영상 쇼케이스
+- **GLB 모델 배경**: 스튜디오 환경의 3D 모델로 깊이감 있는 배경 연출
 
-### `npm run eject`
+### 🎨 세련된 UI/UX
+- **Glassmorphism 디자인**: 블러 효과와 반투명 배경의 현대적인 UI
+- **3D 틸트 카드**: 마우스 움직임에 따라 기울어지는 프로젝트 카드
+- **부드러운 스크롤**: Lenis 라이브러리를 활용한 스무스 스크롤
+- **네온 글로우 효과**: 프로젝트 카드의 은은한 백색 네온 보더
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 🔧 기술적 구현
+- **React Three Fiber**: 선언적 Three.js 렌더링
+- **GSAP 애니메이션**: 부드러운 카메라 무빙과 전환 효과
+- **Framer Motion**: 섬세한 UI 인터랙션과 모달 애니메이션
+- **HashRouter**: SPA 호스팅 환경에서의 라우팅 최적화
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🛠️ 기술 스택
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Core
+| 기술 | 버전 | 용도 |
+|------|------|------|
+| React | 19.1.1 | UI 컴포넌트 라이브러리 |
+| TypeScript | 4.9.5 | 정적 타입 시스템 |
+| React Router DOM | 7.9.1 | SPA 라우팅 (HashRouter) |
 
-## Learn More
+### 3D & Animation
+| 기술 | 버전 | 용도 |
+|------|------|------|
+| Three.js | 0.180.0 | WebGL 3D 렌더링 |
+| @react-three/fiber | 9.3.0 | React용 Three.js 렌더러 |
+| @react-three/drei | 10.7.6 | Three.js 유틸리티 모음 |
+| GSAP | 3.13.0 | 고성능 애니메이션 |
+| Framer Motion | 12.23.14 | UI 모션/제스처 |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### UX Enhancement
+| 기술 | 버전 | 용도 |
+|------|------|------|
+| Lenis | 1.3.11 | 스무스 스크롤 |
+| @use-gesture/react | 10.3.1 | 드래그/스와이프 제스처 |
+| styled-components | 6.1.19 | CSS-in-JS 스타일링 |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+## 📁 프로젝트 구조
+
+```
+profilekms/
+├── public/
+│   ├── 3d/                    # GLB 3D 모델 파일
+│   ├── images/                # 정적 이미지 에셋
+│   ├── videos/                # 프로젝트 쇼케이스 영상
+│   └── models/                # 추가 3D 모델
+│
+├── src/
+│   ├── assets/                # 재사용 가능한 UI 컴포넌트
+│   │   ├── TiltedCard.tsx     # 3D 틸트 효과 카드
+│   │   ├── VideoMesh.tsx      # 3D 비디오 메쉬
+│   │   ├── PillNav.tsx        # 필 형태 네비게이션
+│   │   ├── Liquidglass.tsx    # 글래스모피즘 버블 효과
+│   │   └── Linedown.tsx       # 스크롤 유도 애니메이션
+│   │
+│   ├── components/            # 페이지 구성 컴포넌트
+│   │   ├── MainView.tsx       # 메인 3D 뷰어 (캐러셀 + 배경)
+│   │   ├── MeshCarousel3D.tsx # 3D 메쉬 캐러셀 시스템
+│   │   ├── Header.tsx         # 헤더 + About 모달
+│   │   ├── Projects.tsx       # 프로젝트 카드 목록
+│   │   ├── SkillsSphere.tsx   # 기술 스택 3D 구체
+│   │   └── Introduction.tsx   # 자기소개 컴포넌트
+│   │
+│   ├── pages/                 # 페이지 컴포넌트
+│   │   ├── Home.tsx           # 메인 페이지 (/)
+│   │   └── HomeProjects.tsx   # 프로젝트 페이지 (/projects)
+│   │
+│   ├── data/
+│   │   └── projects.ts        # 프로젝트 데이터
+│   │
+│   ├── styles/                # CSS 스타일시트
+│   │   └── TiltedCard.css     # 틸트 카드 스타일
+│   │
+│   ├── App.tsx                # 루트 컴포넌트 + 라우팅
+│   └── index.tsx              # 앱 진입점
+│
+└── build/                     # 프로덕션 빌드 결과물
+```
+
+---
+
+## 🎯 핵심 컴포넌트
+
+### 1. MeshCarousel3D
+3D 공간에서 동작하는 캐러셀 시스템
+- **RenderTexture**: 각 패널에 독립적인 3D 씬 렌더링
+- **슬롯 모드**: 고정 위치에 패널 배치 (회전 모드도 지원)
+- **호버 인터랙션**: 마우스 오버 시 스케일 확대 + 영상 재생
+
+```tsx
+<MeshCarousel3D
+  count={3}
+  positions={[[0, 1.5, 1], [7, 1, -0.5], [-7, 1, -0.5]]}
+  rtContent={(i, activeIndex, isHovered) => (
+    <VideoMesh src={videoUrls[i]} isActive={isHovered} />
+  )}
+/>
+```
+
+### 2. CameraController
+마우스 패럴랙스 기반 카메라 컨트롤러
+- 마우스 위치를 정규화하여 카메라 위치 계산
+- GSAP `power2.out` 이징으로 부드러운 이동
+
+### 3. TiltedCard
+Framer Motion 기반 3D 틸트 카드
+- 마우스 위치에 따른 rotateX/rotateY 계산
+- Spring 물리 애니메이션으로 자연스러운 움직임
+- 호버 시 스케일 확대 + 오버레이 콘텐츠 표시
+
+### 4. VideoMesh
+Three.js VideoTexture를 활용한 3D 비디오 플레이어
+- `isActive` prop으로 재생/정지 외부 제어
+- 자동 종횡비 유지 및 sRGB 색공간 지원
+
+---
+
+## 🚀 시작하기
+
+### 요구사항
+- Node.js 18.x 이상
+- npm 9.x 이상
+
+### 설치 및 실행
+
+```bash
+# 저장소 클론
+git clone https://github.com/als51406/ProfilePortfolio.git
+cd ProfilePortfolio
+
+# 의존성 설치
+npm install
+
+# 개발 서버 실행
+npm start
+
+# 프로덕션 빌드
+npm run build
+```
+
+### 환경 설정
+개발 서버는 기본적으로 `http://localhost:3000`에서 실행됩니다.
+
+---
+
+## 📄 페이지 구성
+
+| 경로 | 페이지 | 설명 |
+|------|--------|------|
+| `/#/` | Home | 3D 캐러셀과 메인 타이틀이 있는 랜딩 페이지 |
+| `/#/projects` | Projects | 프로젝트 카드 목록 (틸트 효과) |
+
+---
+
+## 🎨 프로젝트 쇼케이스
+
+| 프로젝트 | 설명 | 기술 |
+|----------|------|------|
+| **Profile Portfolio** | 현재 보고 계신 3D 인터랙티브 포트폴리오 | React, Three.js, GSAP |
+| **SMART WATCH 3D** | 애플워치 3D 제품 페이지 | Three.js, WebGL |
+| **토닥톡** | AI 기반 감정 성장 다이어리 (팀 프로젝트) | OpenAI API, React |
+| **Purfit Mall** | 식단관리 쇼핑몰 | 웹 퍼블리싱, 프론트엔드 |
+| **MUI Dashboard** | 비즈니스 데이터 대시보드 | React, MUI, Chart.js |
+| **홍콩 여행 프로모션** | 디자인 프로젝트 | Photoshop, Figma |
+
+---
+
+## 📝 개발 노트
+
+### 성능 최적화
+- GLB 모델 Preload로 초기 로딩 최적화
+- VideoTexture 조건부 재생 (호버 시에만)
+- React.memo와 useMemo로 불필요한 리렌더링 방지
+
+### 호스팅 대응
+- HashRouter 사용으로 정적 호스팅 환경 SPA 라우팅 지원
+- Cafe24 호스팅에서 새로고침 404 문제 해결
+
+---
+
+## 📜 라이선스
+
+이 프로젝트는 개인 포트폴리오 목적으로 제작되었습니다.
+
+---
+
+## 📧 연락처
+
+- **Email**: als51406@naver.com
+- **Portfolio**: [als51406.mycafe24.com](https://als51406.mycafe24.com)
+
+---
+
+<div align="center">
+
+**Made with ❤️ by KMS**
+
+</div>
