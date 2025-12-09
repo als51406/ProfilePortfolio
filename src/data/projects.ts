@@ -13,8 +13,8 @@ export interface Project {
 export const projectsData: Project[] = [
   {
     id: 1,
-    title: 'Profile Portfolio',
-    description: '프로필 소개 사이트입니다. React, TypeScript, Three.js를 활용한 프로필 웹 사이트입니다. 제 작업물들을 조금이나마 생동감 있게 전달되었으면 하는 마음에 제작하게 되었습니다. GSAP 기반의 부드러운 카메라 무빙, Framer Motion의 섬세한 UI 인터랙션, 그리고 Lenis 스크롤로 몰입감 있는 사용자 경험을 구현했습니다. ',
+    title: 'Three.js를 활용한 프로필 사이트',
+    description: 'Three.js와 Canvas, TiltedCard라이브러리를 활용한 프로필 소개 사이트입니다. Canvas를 활용하여 메인페이지를 제작하였고 GSAP릉 이용해 부드러운 카메라 무빙을 구현하였습니다. 라이브러리를 사용하여 프로젝트 페이지를 구성하였습니다.',
     image: '/images/profile_sc2.png',
     link: 'https://als51406.mycafe24.com',
     altText: 'Profile Portfolio - 프로필 소개 사이트',
@@ -22,8 +22,8 @@ export const projectsData: Project[] = [
   },
   {
     id: 2,
-    title: 'SMART WATCH - 3D Portfolio',
-    description: 'three.js 를 활용한 3D 환경의 웹 포트폴리오입니다. 3D 오브젝트를 다루며 기술적인 역량을 기르고자 프로젝트를 진행하게 되었습니다. 기존의 상품 페이지를 조금 더 생동감있고 인터랙티브 한 요소를 추가하여 고객에게 풍부한 경험을 제공하고자하는 목표가 담겨있습니다. 실시간 Apple Watch 모델 렌더링, 그리고 마우스 인터랙션에 반응하는 동적 카메라 컨트롤을 통해 차별화된 웹 경험을 선사하도록 했습니다. ',
+    title: 'Three.js와 GSAP를 활용한 3D 인터랙티브 사이트',
+    description: 'three.js 를 활용한 3D 환경의 웹 포트폴리오 사이트입니다. 3D 오브젝트를 다루고싶어 처음으로 Three.js를 사용하게 된 개인 프로젝트입니다. 기존의 상품 페이지를 조금 더 생동감있고 인터랙티브 한 요소를 추가하여 고객에게 풍부한 경험을 제공하고자하는 목표가 담겨있습니다. 실시간 Apple Watch 모델 렌더링, 그리고 GSAP를 활용하여 마우스 인터랙션에 반응하는 동적 카메라 컨트롤을 통해 차별화된 웹 경험을 선사하도록 했습니다. ',
     image: '/images/3d_sc.png',
     link: 'https://als51406.mycafe24.com/3dPortfolio',
     altText: '3D Portfolio - Three.js 기반 3D 포트폴리오',
@@ -32,7 +32,7 @@ export const projectsData: Project[] = [
   {
     id: 3,
     title: '토닥톡 - 감정 기반 성장다이어리',
-    description: '팀장으로 진행한 최초의 팀 개발 프로젝트 결과물입니다. OPEN AI API를 활용하여 사용자에게 감성적인 AI 서비스를 제공하는 웹사이트를 개발하였습니다. 실제로 서비스를 이용할 수 있도록 데이터베이스 연결, api 사용을 경험해본 프로젝트입니다. 사용자들은 AI 다이어리와 실시간 채팅기능을 이용할 수 있습니다.',
+    description: 'DB서버 연결 및 API사용을 경험한 팀 프로젝트(팅장) 결과물입니다. OPEN AI API를 활용하여 사용자에게 감성적인 서비스를 제공하는 웹사이트를 개발하였습니다. 실제로 서비스를 이용할 수 있도록 데이터베이스 연결, api 사용을 경험해본 프로젝트입니다. 사용자들은 AI 다이어리와 실시간 채팅기능을 이용할 수 있습니다.',
     image: '/images/todaktok_sc4.png',
     link: 'http://zoomedia.synology.me:7780/',
     altText: '토닥톡 - OPEN AI 를 활용한 감정기반 성장 다이어리 프로젝트',
@@ -41,7 +41,7 @@ export const projectsData: Project[] = [
   {
     id: 4,
     title: '쇼핑몰 사이트 - Purfit Mall',
-    description: '식단관리를 하는 사용자들을 위한 식품 쇼핑몰 사이트입니다. 웹 퍼블리싱&프론트엔드 역량을 기르기 위해 제작하였습니다. 쇼핑몰의 이름은 Purfit Mall로 Purple(세련됨의 색상, 메인컬러) + fit 을 합쳐 식단관리도 세련되게 하자는 의미가 담겨있습니다.',
+    description: '식단관리를 하는 사용자들을 위한 식품 쇼핑몰 사이트입니다. 퍼블리싱 역량을 확인시켜드리고자 개발한 개인 포트폴리오 사이트입니다. 라우팅과 Swiper같은 기본적인 프론트엔드 기술스택이 적용되어있으며 상품목록들은 JSON Server로 관리하게 하였습니다.',
     image: '/images/purfit_sc2.png',
     link: 'http://zoomedia.synology.me:9000/',
     altText: 'Purfit Mall - shopping mall site',

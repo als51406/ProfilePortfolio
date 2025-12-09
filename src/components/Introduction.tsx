@@ -30,7 +30,7 @@ const Introduction = () => {
                     
                     {/* 프로필 소개 텍스트 */}
                     <div className='profile-text'>
-                        <p>새로운 기술을 탐구하고 끊임없이 도전하는<br/><strong>인터랙티브 프론트엔드 개발자 김민성</strong>입니다.<br/>UI/UX와 퍼블리싱을 기반으로<br/> 더 높은 몰입감을 제공하는 웹 서비스를<br/> 어떻게 구현할지 늘 고민하고 있습니다.</p>
+                        <p><span className='profile-text-p1' style={{fontSize:32}}>상상을 현실로 만드는</span><br/><strong style={{fontSize:20}}>인터랙티브 프론트엔드 개발자 김민성</strong>입니다.<br/><br/>새로운 기술을 탐구하고 끊임없이 도전하며<br/>보다 나은 사이트를 구현하기위해<br/>항상 고민하고 생각합니다.</p>
                     </div>
                 </div>
             </section>
